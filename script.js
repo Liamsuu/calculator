@@ -54,10 +54,31 @@ const calcFunction = {
       container.appendChild(buttons);
     }
   },
+
+  operate: (oper, num1, num2) => {
+    switch (oper) {
+      case "/":
+        return calcFunction.divide(num1, num2);
+
+      case "+":
+        return calcFunction.add(num1, num2);
+      case "-":
+        return calcFunction.subtract(num1, num2);
+
+      case "+":
+        return calcFunction.multiply(num1, num2);
+
+      default:
+        return "ERROR";
+    }
+  },
 };
 
+// example testing below
+let firstNum = 1;
+let secondNum = 4;
+let operator = "-";
+
+console.log(calcFunction.operate(operator, firstNum, secondNum));
+
 calcFunction.createButtons();
-console.log(calcFunction.subtract(10, 4));
-console.log(calcFunction.add(10, 4));
-console.log(calcFunction.multiply(10, 4));
-console.log(calcFunction.divide(10, 4));
