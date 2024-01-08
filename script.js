@@ -10,6 +10,41 @@ const calcFunction = {
     return sum;
   },
 
+  subtract: (...params) => {
+    let sum;
+    params.forEach((number, index) => {
+      if (index === 0) {
+        sum = params[index];
+      } else {
+        sum -= number;
+      }
+    });
+    return sum;
+  },
+
+  multiply: (...params) => {
+    let sum;
+    params.forEach((number, index) => {
+      if (index === 0) {
+        sum = params[index];
+      } else {
+        sum *= number;
+      }
+    });
+    return sum;
+  },
+
+  divide: (...params) => {
+    let sum = params;
+    params.forEach((number, index) => {
+      if (index === 0) {
+        sum = params[index];
+      } else {
+        sum /= number;
+      }
+    });
+    return sum;
+  },
   createButtons: () => {
     const container = document.querySelector(".main-container");
     for (let x = 0; x !== 10; x++) {
@@ -22,3 +57,7 @@ const calcFunction = {
 };
 
 calcFunction.createButtons();
+console.log(calcFunction.subtract(10, 4));
+console.log(calcFunction.add(10, 4));
+console.log(calcFunction.multiply(10, 4));
+console.log(calcFunction.divide(10, 4));
