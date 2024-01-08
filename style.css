@@ -18,7 +18,41 @@ body {
 
 .main-container {
   background-color: red;
+  display: flex;
+  flex-direction: column;
   height: 700px;
   width: 700px;
+}
+/* mainly used to just keep the extra buttons next to the main container */
+#outer-container {
+  display: flex;
+  flex-direction: row;
   margin-bottom: auto;
+  height: 700px;
+  /* just keeps the height strict */
+}
+
+#buttons-container {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+}
+
+#extra-buttons {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+#display {
+  font-weight: bolder;
+  /* remove size after */
+  font-size: xx-large;
+  display: flex;
+  height: 50px;
+  background-color: blue;
+  justify-content: center;
+  align-items: center;
 }

@@ -46,7 +46,7 @@ const calcFunction = {
     return sum;
   },
   createButtons: () => {
-    const container = document.querySelector(".main-container");
+    const container = document.querySelector("#buttons-container");
     for (let x = 0; x !== 10; x++) {
       const buttons = document.createElement("button");
       buttons.className = "buttons";
