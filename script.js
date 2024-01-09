@@ -83,13 +83,27 @@ const calcFunction = {
 
 const otherFunctionality = {
   // update so operators cannot be appended one after another such as "+-" only allowing a num after
-  displayTextUpdater: (nodelist) => {
-    nodelist.forEach((button) => {
-      button.addEventListener("click", () => {
-        const buttonNumber = button.textContent;
-        display.textContent += buttonNumber;
-      });
-    });
+
+  // simply used to check if operator last in displays text to prevent multiple operators straight
+  // just loop through nodelist(buttons) and each button from that will be passed through this when
+  // clicked.
+  checkOperator: (button) => {
+    const display = document.querySelector("#display");
+    const displayTextLength = display.textContent.length;
+    // if nodelist is operator, check last is not operator, if not add it to text otherwise ignore it
+
+    switch (display.textContent.charAt(displayTextLength - 1)) {
+      case "-":
+        break;
+      case "*":
+        break;
+      case "/":
+        break;
+      case "+":
+        break;
+      default:
+        return (display.textContent += button.textContent);
+    }
   },
 };
 
@@ -103,7 +117,15 @@ calcFunction.createButtons();
 const buttons = document.querySelectorAll(".buttons");
 const outerButtons = document.querySelectorAll(".outer-buttons");
 const display = document.querySelector("#display");
-let displayText;
 
-otherFunctionality.displayTextUpdater(buttons);
-otherFunctionality.displayTextUpdater(outerButtons);
+outerButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    otherFunctionality.checkOperator(button);
+  });
+});
+
+buttons.forEach((button) => {
+  button.addEventListener("click", () => {
+    display.textContent += button.textContent;
+  });
+});
