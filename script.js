@@ -1,7 +1,5 @@
-// object just holds all the functionality.
-// might need to change so that it takes an array of the previously typed stuff and only minus
-// the number that follows with event listener.
 const calcFunction = {
+  // these methods may become redundant in the future.
   add: (...params) => {
     let sum = 0;
     params.forEach((number) => {
@@ -82,15 +80,12 @@ const calcFunction = {
 };
 
 const otherFunctionality = {
-  // update so operators cannot be appended one after another such as "+-" only allowing a num after
-
-  // simply used to check if operator last in displays text to prevent multiple operators straight
-  // just loop through nodelist(buttons) and each button from that will be passed through this when
-  // clicked.
+  /* simply used to check if operator last in displays text to prevent multiple operators straight
+  just loop through nodelist(buttons) and each button from that will be passed through this when
+  clicked. */
   checkOperator: (button) => {
     const display = document.querySelector("#display");
     const displayTextLength = display.textContent.length;
-    // if nodelist is operator, check last is not operator, if not add it to text otherwise ignore it
 
     switch (display.textContent.charAt(displayTextLength - 1)) {
       case "-":
