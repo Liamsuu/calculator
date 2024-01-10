@@ -37,6 +37,9 @@ const calcFunction = {
     params.forEach((number, index) => {
       if (index === 0) {
         sum = params[index];
+      }
+      if (number === 0 && index === 1) {
+        sum = "You tried, you failed. You know what you did.";
       } else {
         sum /= number;
       }
@@ -58,12 +61,14 @@ const calcFunction = {
   },
 
   operate: (oper, num1, num2) => {
+    num1 = Number(num1);
+    num2 = Number(num2);
     switch (oper) {
       case "/":
         return calcFunction.divide(num1, num2);
 
       case "+":
-        return calcFunction.add(Number(num1), Number(num2));
+        return calcFunction.add(num1, num2);
       case "-":
         return calcFunction.subtract(num1, num2);
 
@@ -111,7 +116,7 @@ const outerButtons = document.querySelectorAll(".outer-buttons");
 const display = document.querySelector("#display");
 let firstNum = "";
 let operatorInUse = ""; // just what operator is used like + - * /, etc.x
-let secondNum = ""; // these string numbers will be turned into real numbers when adding
+let secondNum = ""; // these string numbers will be turned into real numbers using operate()
 
 const equalsButton = document.querySelector("#result-button");
 const resetButton = document.querySelector("#clear-button");
