@@ -52,11 +52,24 @@ const calcFunction = {
 
   createButtons: () => {
     const container = document.querySelector("#buttons-container");
+    const segment1 = container.querySelector("#segment1");
+    const segment2 = container.querySelector("#segment2");
+    const segment3 = container.querySelector("#segment3");
+    const segment4 = container.querySelector("#segment4");
+
     for (let x = 0; x !== 10; x++) {
       const buttons = document.createElement("button");
       buttons.className = "buttons";
       buttons.textContent = `${x}`;
-      container.appendChild(buttons);
+      if (x === 0) {
+        segment4.appendChild(buttons);
+      } else if (x > 0 && x < 4) {
+        segment1.appendChild(buttons);
+      } else if (x > 3 && x < 7) {
+        segment2.appendChild(buttons);
+      } else {
+        segment3.appendChild(buttons);
+      }
     }
   },
 
@@ -187,5 +200,4 @@ resetButton.addEventListener("click", () => {
   operatorInUse = "";
 });
 console.log(6 / 3);
-// UPDATE IT SO IT CAN TAKE MINUS NUMBERS AND CHANGE IT SO IT CONVERTS TO NUMBER RATHER THAN PASSING
-// THE OPERATE FUNCTION A STRING.
+// UPDATE IT SO IT CAN TAKE MINUS NUMBERS
