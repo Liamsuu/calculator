@@ -67,21 +67,12 @@ const calcFunction = {
       case "-":
         return calcFunction.subtract(num1, num2);
 
-      case "+":
+      case "*":
         return calcFunction.multiply(num1, num2);
 
       default:
         return "ERROR";
     }
-  },
-
-  // create calculate function that simply grabs display text and turns it into numbers to calculate
-  // then replace text content with that.
-
-  textCalculate: (text) => {
-    // perhaps turn to array. go through each and evaluate using bidmas
-    // so for divide it will grab both left and right side numbers and divide them and store result
-    // to work on the rest.
   },
 };
 
@@ -108,36 +99,81 @@ const otherFunctionality = {
   },
 
   updateTextVar: (text) => {
-    return (displayText += text);
+    return (operatorInUse += text);
   },
 };
 
-// example testing below
+// MAIN CODE
 
 calcFunction.createButtons();
 const buttons = document.querySelectorAll(".buttons");
 const outerButtons = document.querySelectorAll(".outer-buttons");
 const display = document.querySelector("#display");
-let displayText = "";
+let firstNum = "";
+let operatorInUse = ""; // just what operator is used like + - * /, etc.
+let secondNum = ""; // these numbers will be turned into numbers.
 
-// it must check result of display text updater return value first otherwise the display will not
-// update with too many operators, but the var will which is not what is wanted.
+const equalsButton = document.querySelector("#result-button");
+const resetButton = document.querySelector("#clear-button");
+
+// just updates the ui text and takes note of operators in use
 outerButtons.forEach((button) => {
   button.addEventListener("click", () => {
-    if (otherFunctionality.updateDisplayText(button) !== undefined) {
+    let operatorUsed = false;
+
+    for (let x = 0; x < display.textContent.length; x++) {
+      if (
+        display.textContent.charAt(x) == "+" ||
+        display.textContent.charAt(x) == "*" ||
+        display.textContent.charAt(x) == "-" ||
+        display.textContent.charAt(x) == "/"
+      ) {
+        operatorUsed = true;
+      }
+    }
+    if (operatorUsed == false) {
       otherFunctionality.updateTextVar(button.textContent);
       otherFunctionality.updateDisplayText(button);
     }
-    // log is just a test
-    console.log(displayText);
+
+    console.log(operatorInUse);
   });
 });
 
 buttons.forEach((button) => {
   button.addEventListener("click", () => {
     display.textContent += button.textContent;
-    displayText += button.textContent;
-    console.log(displayText);
+    // check if operator is used, if not then append this string to firstNum(will convert to number)
+    // else append to second Num
+    let operatorUsed = false;
+    for (let x = 0; x < display.textContent.length; x++) {
+      if (
+        display.textContent.charAt(x) == "+" ||
+        display.textContent.charAt(x) == "*" ||
+        display.textContent.charAt(x) == "-" ||
+        display.textContent.charAt(x) == "/"
+      ) {
+        operatorUsed = true;
+      }
+    }
+    if (operatorUsed === false) {
+      firstNum += button.textContent;
+    } else {
+      secondNum += button.textContent;
+    }
+
+    console.log("first number: " + " " + firstNum);
+    console.log("second number: " + " " + secondNum);
   });
 });
-// for now, just change it so it can only allow two numbers at once rather than long expressions.
+
+equalsButton.addEventListener("click", () => {
+  answer = calcFunction.operate(operatorInUse, firstNum, secondNum);
+  display.textContent = answer;
+  firstNum = display.textContent;
+  secondNum = "";
+  operatorInUse = "";
+});
+
+// UPDATE IT SO IT CAN TAKE MINUS NUMBERS AND CHANGE IT SO IT CONVERTS TO NUMBER RATHER THAN PASSING
+// THE OPERATE FUNCTION A STRING.
