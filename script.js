@@ -34,17 +34,17 @@ const calcFunction = {
 
   divide: (...params) => {
     let sum = params;
+    if (params[0] === 0 || params[1] === 0) {
+      return "You tried, you failed. You know what you did.";
+    }
     params.forEach((number, index) => {
       if (index === 0) {
         sum = params[index];
-      }
-      if (number === 0 && index === 1) {
-        sum = "You tried, you failed. You know what you did.";
       } else {
         sum /= number;
       }
     });
-    return sum;
+    return Math.round(sum * 100) / 100;
   },
 
   /* perhaps for this createButtons function I should make it like a grid with 3 buttons 
@@ -186,6 +186,6 @@ resetButton.addEventListener("click", () => {
   secondNum = "";
   operatorInUse = "";
 });
-
+console.log(6 / 3);
 // UPDATE IT SO IT CAN TAKE MINUS NUMBERS AND CHANGE IT SO IT CONVERTS TO NUMBER RATHER THAN PASSING
 // THE OPERATE FUNCTION A STRING.
