@@ -63,7 +63,7 @@ const calcFunction = {
         return calcFunction.divide(num1, num2);
 
       case "+":
-        return calcFunction.add(num1, num2);
+        return calcFunction.add(Number(num1), Number(num2));
       case "-":
         return calcFunction.subtract(num1, num2);
 
@@ -110,8 +110,8 @@ const buttons = document.querySelectorAll(".buttons");
 const outerButtons = document.querySelectorAll(".outer-buttons");
 const display = document.querySelector("#display");
 let firstNum = "";
-let operatorInUse = ""; // just what operator is used like + - * /, etc.
-let secondNum = ""; // these numbers will be turned into numbers.
+let operatorInUse = ""; // just what operator is used like + - * /, etc.x
+let secondNum = ""; // these string numbers will be turned into real numbers when adding
 
 const equalsButton = document.querySelector("#result-button");
 const resetButton = document.querySelector("#clear-button");
