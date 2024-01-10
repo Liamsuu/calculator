@@ -77,13 +77,19 @@ const calcFunction = {
 
   // create calculate function that simply grabs display text and turns it into numbers to calculate
   // then replace text content with that.
+
+  textCalculate: (text) => {
+    // perhaps turn to array. go through each and evaluate using bidmas
+    // so for divide it will grab both left and right side numbers and divide them and store result
+    // to work on the rest.
+  },
 };
 
 const otherFunctionality = {
   /* simply used to check if operator last in displays text to prevent multiple operators straight
   just loop through nodelist(buttons) and each button from that will be passed through this when
   clicked. */
-  checkOperator: (button) => {
+  updateDisplayText: (button) => {
     const display = document.querySelector("#display");
     const displayTextLength = display.textContent.length;
 
@@ -100,27 +106,38 @@ const otherFunctionality = {
         return (display.textContent += button.textContent);
     }
   },
+
+  updateTextVar: (text) => {
+    return (displayText += text);
+  },
 };
 
 // example testing below
-let firstNum = 1;
-let secondNum = 4;
-let operator = "-";
 
-console.log(calcFunction.operate(operator, firstNum, secondNum));
 calcFunction.createButtons();
 const buttons = document.querySelectorAll(".buttons");
 const outerButtons = document.querySelectorAll(".outer-buttons");
 const display = document.querySelector("#display");
+let displayText = "";
 
+// it must check result of display text updater return value first otherwise the display will not
+// update with too many operators, but the var will which is not what is wanted.
 outerButtons.forEach((button) => {
   button.addEventListener("click", () => {
-    otherFunctionality.checkOperator(button);
+    if (otherFunctionality.updateDisplayText(button) !== undefined) {
+      otherFunctionality.updateTextVar(button.textContent);
+      otherFunctionality.updateDisplayText(button);
+    }
+    // log is just a test
+    console.log(displayText);
   });
 });
 
 buttons.forEach((button) => {
   button.addEventListener("click", () => {
     display.textContent += button.textContent;
+    displayText += button.textContent;
+    console.log(displayText);
   });
 });
+// for now, just change it so it can only allow two numbers at once rather than long expressions.
