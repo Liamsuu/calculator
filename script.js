@@ -175,5 +175,12 @@ equalsButton.addEventListener("click", () => {
   operatorInUse = "";
 });
 
+resetButton.addEventListener("click", () => {
+  display.textContent = "";
+  firstNum = "";
+  secondNum = "";
+  operatorInUse = "";
+});
+
 // UPDATE IT SO IT CAN TAKE MINUS NUMBERS AND CHANGE IT SO IT CONVERTS TO NUMBER RATHER THAN PASSING
 // THE OPERATE FUNCTION A STRING.
