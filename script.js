@@ -153,8 +153,6 @@ outerButtons.forEach((button) => {
       otherFunctionality.updateTextVar(button.textContent);
       otherFunctionality.updateDisplayText(button);
     }
-
-    console.log(operatorInUse);
   });
 });
 
@@ -179,9 +177,6 @@ buttons.forEach((button) => {
     } else {
       secondNum += button.textContent;
     }
-
-    console.log("first number: " + " " + firstNum);
-    console.log("second number: " + " " + secondNum);
   });
 });
 
@@ -199,5 +194,5 @@ resetButton.addEventListener("click", () => {
   secondNum = "";
   operatorInUse = "";
 });
-console.log(6 / 3);
+
 // UPDATE IT SO IT CAN TAKE MINUS NUMBERS
